@@ -1,0 +1,56 @@
+#!/bin/sh
+
+. /etc/os-release
+
+echo -e "\e[0mWelcome to \e[1;32mCucumber\e[0m!"
+clear
+
+echo -e "\e[1;32mCucumber 26.4 \e[0mfor $NAME."
+
+if [ "$1" = "root" ]; then
+	echo -e "\e[1;33mWARNING\e[0m! You started Progwilinux session as \e[1;31mADMINISTRATOR\e[0m!"
+elif [ "$1" = "progwilinux" ]; then
+	echo -e "\e[1;33mWARNING\e[0m! You started Progwilinux session as \e[1;31mADMINISTRATOR\e[0m!"
+fi
+
+while true; do
+	echo -ne "\e[1;34m$NAME\e[0m>" && read inpt arg
+	
+	if [ "$inpt" = "ext" ]; then
+		if [ "$1" = "root" ]; then
+			exit
+		elif [ "$1" = "progwilinux" ]; then
+			exit
+		else
+			echo -e "Sorry, need \e[1;31madministrator\e[0m rights."
+		fi
+	elif [ "$inpt" = "qt" ]; then
+		if [ "$1" = "root" ]; then
+			exit
+		elif [ "$1" = "progwilinux" ]; then
+			exit
+		else
+			echo -e "Sorry, need \e[1;31madministrator\e[0m rights."
+		fi
+	elif [ "$inpt" = "sp" ]; then
+		./$arg
+	elif [ "$inpt" = "cnf" ]; then
+		./$arg
+	elif [ "$inpt" = "dr" ]; then
+		ls -la
+	elif [ "$inpt" = "cp" ]; then
+		pwd
+	elif [ "$inpt" = "inf" ]; then
+		if [ "$arg" = "cucumber" ]; then
+			echo -e "\e[1;32mCucumber 26.4 \e[0mfor $NAME."
+		elif [ "$arg" = "os" ]; then
+			echo -e "\e[0;33m$PRETTY_NAME\e[0m."
+		fi
+	elif [ "$inpt" = "chp" ]; then
+		cd $arg
+	elif [ "$inpt" = "os" ]; then
+		echo -e "$PRETTY_NAME"
+	else
+		echo -e "\e[1;32mcucumber\e[0m: \e[1;31m$inpt\e[0m not found."
+	fi
+done
